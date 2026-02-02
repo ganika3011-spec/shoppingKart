@@ -3,6 +3,7 @@ from .views import _cart_id
 from django.urls import path
 def counter(request):
     cart_count=0
+    cart_items= []
     if 'admin' in request.path:
         return {}
     else:
