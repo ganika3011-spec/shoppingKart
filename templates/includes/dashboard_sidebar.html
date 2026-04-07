@@ -1,0 +1,60 @@
+<aside class="col-md-3">
+	<!--   SIDEBAR   -->
+	<div class="list-group" style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+		<a class="list-group-item list-group-item-action {% if '/accounts/dashboard/' in request.path %}active{% endif %}" 
+		   href="{% url 'dashboard' %}" 
+		   style="border: none; padding: 15px 20px; transition: all 300ms ease;">
+			<i class="fas fa-chart-line mr-2" style="color: #007bff;"></i> Dashboard
+		</a>
+
+		<a class="list-group-item list-group-item-action {% if '/my_orders/' in request.path %}active{% endif %}" 
+		   href="{% url 'my_orders' %}" 
+		   style="border: none; padding: 15px 20px; transition: all 300ms ease;">
+			<i class="fas fa-shopping-bag mr-2" style="color: #28a745;"></i> My Orders
+		</a>
+
+		<a class="list-group-item list-group-item-action {% if '/wishlist/' in request.path %}active{% endif %}" 
+		   href="{% url 'wishlist' %}" 
+		   style="border: none; padding: 15px 20px; transition: all 300ms ease;">
+			<i class="fas fa-heart mr-2" style="color: #dc3545;"></i> Wishlist
+		</a>
+
+		<a class="list-group-item list-group-item-action {% if '/edit_profile/' in request.path %}active{% endif %}" 
+		   href="{% url 'edit_profile' %}" 
+		   style="border: none; padding: 15px 20px; transition: all 300ms ease;">
+			<i class="fas fa-user-circle mr-2" style="color: #ffc107;"></i> Edit Profile
+		</a>
+
+		<a class="list-group-item list-group-item-action {% if '/change_password/' in request.path %}active{% endif %}" 
+		   href="{% url 'change_password' %}" 
+		   style="border: none; padding: 15px 20px; transition: all 300ms ease;">
+			<i class="fas fa-lock mr-2" style="color: #17a2b8;"></i> Change Password
+		</a>
+	</div>
+	<br>
+	<a class="btn btn-light btn-block" href="{% url 'logout' %}" style="border-radius: 8px; padding: 12px; font-weight: 600; transition: all 300ms ease;"> 
+		<i class="fas fa-sign-out-alt mr-2"></i> <span class="text">Log out</span> 
+	</a> 
+	<!--   SIDEBAR .//END   -->
+</aside>
+
+<style>
+	.list-group-item {
+		cursor: pointer;
+		border-left: 4px solid transparent;
+		transition: all 300ms ease;
+	}
+
+	.list-group-item:hover {
+		background-color: #f8f9fa;
+		border-left-color: #007bff;
+		transform: translateX(5px);
+	}
+
+	.list-group-item.active {
+		background-color: #e7f1ff;
+		color: #007bff;
+		border-left-color: #007bff;
+		font-weight: 600;
+	}
+</style>

@@ -12,16 +12,16 @@
 					
 					<div class="card-body">
                         <h4 class=" card-title mb-4">Billing Address</h4>
-                        <form action="" method="POST">
+                        <form action="{% url 'place_order' %}" method="POST">
                             {% csrf_token %}
                             <div class="form-row">
                                 <div class="form-group col-md-6 mb-3">
                                     <label for="firstName">First name</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                    <input type="text" class="form-control" id="firstName" name= "first_name" placeholder="" value="" required>
                                 </div>
                                 <div class="form-group col-md-6 mb-3">
                                     <label for="lastName">Last name</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                                    <input type="text" class="form-control" id="lastName" name= "last_name" placeholder="" value="" required>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -34,11 +34,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="address">Address line 1</label>
-                                <input type="text" class="form-control" id="address1" placeholder="" name="addres_line_1" required>
+                                <input type="text" class="form-control" id="address1" placeholder="" name="address_line_1" required>
                             </div>
                             <div class="mb-3">
                                 <label for="address">Address line 2</label>
-                                <input type="text" class="form-control" id="address2" placeholder="" name="addres_line_2" required>
+                                <input type="text" class="form-control" id="address2" placeholder="" name="address_line_2" required>
                             </div>
                             <div><div class="mb-3">
                                 <label for="city">City</label>
@@ -113,7 +113,7 @@
 					<div class="card-body ">
 						
 						
-						<button type="submit" name= "button" class="btn btn-primary btn-block"> Place Your Order  </button>
+						<button type="submit" name= "submit" class="btn btn-primary btn-block"> Place Your Order  </button>
 						<a href="{% url 'store' %}" class="btn btn-light btn-block">Continue Shopping</a>
                         </form>
 					</div> <!-- card-body.// -->

@@ -1,53 +1,507 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<!-- ========================= SECTION MAIN ========================= -->
-<section class="section-intro padding-y-sm">
-<div class="container">
 
-<div class="intro-banner-wrap">
-	<img src="{% static 'images/banners/1.jpg' %}" class="img-fluid rounded">
-</div>
+<!-- ========================= HERO BANNER SECTION ========================= -->
+<section class="hero-banner-premium" style="
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  color: white;
+  min-height: 550px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+">
+  <!-- Animated Blob 1 -->
+  <div style="
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    animation: blob1 8s ease-in-out infinite;
+    filter: blur(40px);
+  "></div>
 
-</div> <!-- container //  -->
+  <!-- Animated Blob 2 -->
+  <div style="
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    animation: blob2 10s ease-in-out infinite;
+    filter: blur(40px);
+  "></div>
+
+  <div class="container position-relative" style="z-index: 10;">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <!-- Main Heading -->
+        <h1 class="display-3 font-weight-bold mb-4 slide-in-left" style="
+          text-shadow: 2px 4px 16px rgba(0,0,0,0.2);
+          font-size: clamp(2.5rem, 8vw, 3.8rem);
+          letter-spacing: -1px;
+          line-height: 1.2;
+          animation: fadeInUp 0.8s ease-out;
+        ">
+          Your Premium Online Shopping Destination
+        </h1>
+        
+        <!-- Subheading -->
+        <p class="lead mb-5" style="
+          text-shadow: 1px 2px 8px rgba(0,0,0,0.15);
+          font-size: clamp(1rem, 3vw, 1.25rem);
+          max-width: 600px;
+          line-height: 1.8;
+          font-weight: 300;
+          opacity: 0.95;
+          animation: fadeInUp 0.8s ease-out 0.2s both;
+        ">
+          Shop thousands of products from top brands with exclusive deals, fast shipping & 24/7 support
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="d-flex gap-3 flex-wrap" style="animation: fadeInUp 0.8s ease-out 0.4s both;">
+          <a href="{% url 'store' %}" class="btn btn-light btn-lg" style="
+            padding: 14px 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: #667eea;
+            border: none;
+          " onmouseover="this.style.transform='translateY(-4px) scale(1.05)'; this.style.boxShadow='0 16px 40px rgba(0,0,0,0.4)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)'">
+            <i class="fas fa-shopping-bag mr-2"></i> Start Shopping
+          </a>
+          
+          <a href="#popular" class="btn btn-lg" style="
+            padding: 14px 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+          " onmouseover="this.style.background='rgba(255,255,255,0.25)'; this.style.transform='translateY(-4px) scale(1.05)'; this.style.borderColor='rgba(255,255,255,0.6)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'; this.style.transform='translateY(0) scale(1)'; this.style.borderColor='rgba(255,255,255,0.4)'">
+            <i class="fas fa-arrow-right mr-2"></i> Browse Catalog
+          </a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div style="
+          margin-top: 50px;
+          display: flex;
+          gap: 30px;
+          flex-wrap: wrap;
+          animation: fadeInUp 0.8s ease-out 0.6s both;
+        ">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-check-circle" style="font-size: 24px;"></i>
+            <span>1M+ Happy Customers</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-shield-alt" style="font-size: 24px;"></i>
+            <span>100% Secure</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-clock" style="font-size: 24px;"></i>
+            <span>Quick Delivery</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side Visual -->
+      <div class="col-lg-5 text-center d-none d-lg-block" style="
+        position: relative;
+        z-index: 5;
+        animation: fadeInRight 0.8s ease-out 0.3s both;
+      ">
+        <div style="
+          width: 300px;
+          height: 300px;
+          margin: 0 auto;
+          background: rgba(255, 255, 255, 0.15);
+          border-radius: 30px;
+          backdrop-filter: blur(10px);
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 30px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        ">
+          <div style="text-align: center;">
+            <i class="fas fa-shopping-cart" style="
+              font-size: 80px;
+              margin-bottom: 20px;
+              opacity: 0.95;
+            "></i>
+            <p style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">Best Deals Online</p>
+            <p style="font-size: 14px; opacity: 0.8;">Exclusive offers every day</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes blob1 {
+      0%, 100% { 
+        transform: translate(0, 0) rotate(0deg);
+      }
+      33% { 
+        transform: translate(-30px, 30px) rotate(120deg);
+      }
+      66% { 
+        transform: translate(30px, -20px) rotate(240deg);
+      }
+    }
+    
+    @keyframes blob2 {
+      0%, 100% { 
+        transform: translate(0, 0) rotate(0deg);
+      }
+      33% { 
+        transform: translate(30px, -30px) rotate(120deg);
+      }
+      66% { 
+        transform: translate(-20px, 30px) rotate(240deg);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .hero-banner-premium {
+      z-index: 1;
+    }
+  </style>
 </section>
-<!-- ========================= SECTION MAIN END// ========================= -->
 
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name padding-y-sm">
-<div class="container">
-
-<header class="section-heading">
-	<a href="{% url 'store' %}" class="btn btn-outline-primary float-right">See all</a>
-	<h3 class="section-title">Popular products</h3>
-</header><!-- sect-heading -->
-
-	
-<div class="row">
-	{% for product in products%}
-	<div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="{{ product.get_absolute_url }}" class="img-wrap"> <img src="{{ product.image.url }}"> </a>
-			<figcaption class="info-wrap">
-				<a href="{{ product.get_absolute_url }}" class="title">{{ product.product_name}}</a>
-				<div class="price mt-1"> $ {{ product.price }}</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	{% endfor%}
-</div> <!-- row.// -->
-
-</div><!-- container // -->
+<!-- ========================= FEATURES SECTION ========================= -->
+<section class="py-4 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 text-center mb-3">
+        <i class="fas fa-shipping-fast fa-2x text-primary mb-2"></i>
+        <h6 class="font-weight-bold">Free Shipping</h6>
+        <p class="text-muted small">On orders over $50</p>
+      </div>
+      <div class="col-md-3 text-center mb-3">
+        <i class="fas fa-lock fa-2x text-primary mb-2"></i>
+        <h6 class="font-weight-bold">Secure Payment</h6>
+        <p class="text-muted small">100% secured transactions</p>
+      </div>
+      <div class="col-md-3 text-center mb-3">
+        <i class="fas fa-undo fa-2x text-primary mb-2"></i>
+        <h6 class="font-weight-bold">Easy Returns</h6>
+        <p class="text-muted small">30-day return policy</p>
+      </div>
+      <div class="col-md-3 text-center mb-3">
+        <i class="fas fa-headset fa-2x text-primary mb-2"></i>
+        <h6 class="font-weight-bold">24/7 Support</h6>
+        <p class="text-muted small">Dedicated customer service</p>
+      </div>
+    </div>
+  </div>
 </section>
-<!-- ========================= SECTION  END// ========================= -->
+
+<!-- ========================= POPULAR PRODUCTS SECTION ========================= -->
+<section class="py-5" id="popular">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="row mb-5 align-items-center">
+      <div class="col-lg-8">
+        <h2 class="section-title">Popular Products</h2>
+        <p class="text-muted">Trending items that customers love</p>
+      </div>
+      <div class="col-lg-4 text-lg-right">
+        <a href="{% url 'store' %}" class="btn btn-primary">
+          View All Products <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="row">
+      {% for product in products %}
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4 fade-in">
+        <div class="product-card">
+          <!-- Product Image -->
+          <div class="product-image">
+            {% if product.stock <= 0 %}
+              <span class="product-badge">Out of Stock</span>
+            {% else %}
+              <span class="stock-badge">✓ In Stock</span>
+            {% endif %}
+            
+            <a href="{{ product.get_absolute_url }}" class="w-100 h-100 d-flex align-items-center justify-content-center">
+              <img src="{{ product.image.url }}" alt="{{ product.product_name }}" class="img-fluid">
+            </a>
+          </div>
+
+          <!-- Product Info -->
+          <div class="product-info">
+            <!-- Title -->
+            <a href="{{ product.get_absolute_url }}" class="product-title">
+              {{ product.product_name }}
+            </a>
+
+            <!-- Rating -->
+            <div class="product-rating">
+              <div class="stars">
+                {% for i in "12345" %}
+                  {% if product.averageReview > i|add:0 %}
+                    <i class="fas fa-star"></i>
+                  {% elif product.averageReview > i|add:-0.5 %}
+                    <i class="fas fa-star-half-alt"></i>
+                  {% else %}
+                    <i class="far fa-star"></i>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <span class="review-count">({{ product.countReview }} reviews)</span>
+            </div>
+
+            <!-- Price -->
+            <div class="product-price">
+              <span class="price">${{ product.price }}</span>
+            </div>
+
+            <!-- Actions -->
+            <div class="product-actions">
+              <a href="{{ product.get_absolute_url }}" class="btn btn-sm btn-outline-primary flex-grow-1">
+                <i class="fas fa-eye mr-1"></i> View
+              </a>
+              <button class="btn btn-sm btn-primary flex-grow-1 add-to-cart-btn" data-product-id="{{ product.id }}">
+                <i class="fas fa-shopping-cart mr-1"></i> Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if products|length == 0 %}
+    <div class="text-center py-5">
+      <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+      <p class="text-muted">No products available right now.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ========================= CTA SECTION ========================= -->
+<section class="py-5 bg-primary text-white rounded-lg mx-3 mb-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+  <div class="container text-center">
+    <h3 class="font-weight-bold mb-4">Ready to Shop?</h3>
+    <p class="lead mb-4">Explore our full catalog and find exactly what you're looking for.</p>
+    <a href="{% url 'store' %}" class="btn btn-light btn-lg">
+      <i class="fas fa-shopping-bag mr-2"></i> Start Shopping
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero-banner-section {
+    animation: fadeIn 600ms ease-out;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    border-radius: 2px;
+  }
+
+  .product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 300ms ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .product-card:hover {
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    transform: translateY(-8px);
+  }
+
+  .product-image {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 300ms ease;
+  }
+
+  .product-card:hover .product-image img {
+    transform: scale(1.1);
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #dc3545;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 10;
+  }
+
+  .stock-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: #28a745;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.95;
+  }
+
+  .product-title {
+    color: #212529;
+    font-weight: 600;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    transition: color 300ms ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-card:hover .product-title {
+    color: #007bff;
+  }
+
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0;
+  }
+
+  .product-rating .stars {
+    color: #ffc107;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .product-rating .review-count {
+    font-size: 12px;
+    color: #6c757d;
+  }
+
+  .product-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #007bff;
+    margin: 10px 0;
+  }
+
+  .product-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+  }
+
+  .product-actions .btn {
+    font-size: 12px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 300ms ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .slide-in-left {
+    animation: slideInLeft 600ms ease-out;
+  }
+
+  .fade-in {
+    animation: fadeIn 400ms ease-out;
+  }
+</style>
+
 {% endblock %}
-
-
-
-
-<!-- ========================= FOOTER ========================= -->
-
-<!-- ========================= FOOTER END // ========================= -->
 
 </body>
 </html>

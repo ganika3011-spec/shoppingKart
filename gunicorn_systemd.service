@@ -1,0 +1,30 @@
+[Unit]
+Description=Shopping Kart Gunicorn Application Server
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/home/shopping-kart/shoppingKart
+
+# Python virtual environment
+Environment="PATH=/home/shopping-kart/shoppingKart/venv/bin"
+Environment="DJANGO_SETTINGS_MODULE=Kart.settings"
+
+# Gunicorn command
+ExecStart=/home/shopping-kart/shoppingKart/venv/bin/gunicorn \
+    --workers 4 \
+    --worker-class sync \
+    --bind unix:/run/gunicorn.sock \
+    --timeout 30 \
+    --access-logfile /var/log/gunicorn/access.log \
+    --error-logfile /var/log/gunicorn/error.log \
+    --log-level info \
+    Kart.wsgi:application
+
+# Restart on failure
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

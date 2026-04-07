@@ -1,190 +1,234 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<section class="section-pagetop bg">
-<div class="container">
-	{% if 'search' in request.path%}
-	<h2 class="title-page">Search Results</h2>
-	{% else %}
-	<h2 class="title-page">Store</h2>
-	{% endif %}
-	
-</div> <!-- container //  -->
+
+<!-- ========================= PAGE HEADER ========================= -->
+<section class="page-header py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        {% if 'search' in request.path %}
+          <h1 class="display-4 font-weight-bold mb-2">Search Results</h1>
+          <p class="lead text-light">Found {{ product_count }} products matching your search</p>
+        {% else %}
+          <h1 class="display-4 font-weight-bold mb-2">Our Store</h1>
+          <p class="lead text-light">Browse our complete collection of products</p>
+        {% endif %}
+      </div>
+      <div class="col-lg-4 text-lg-right">
+        <div class="bg-white text-dark p-3 rounded-lg shadow">
+          <h4 class="font-weight-bold mb-0">📦 {{ product_count }} Products</h4>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content padding-y">
-<div class="container">
+<!-- ========================= FILTERS & CONTENT ========================= -->
+<section class="py-5">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- ===== SIDEBAR FILTERS ===== -->
+      <aside class="col-lg-3 mb-4 mb-lg-0">
+        <div class="card glass mb-4 slide-in-left">
+          <!-- Categories Filter -->
+          <article class="filter-group">
+            <header class="card-header border-0 bg-transparent" data-toggle="collapse" data-target="#categoriesFilter">
+              <h6 class="font-weight-bold mb-0">
+                <i class="fas fa-folder mr-2 text-primary"></i> Categories
+              </h6>
+            </header>
+            <div class="collapse show" id="categoriesFilter">
+              <div class="card-body pt-0">
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-1">
+                    <a href="{% url 'store' %}" class="nav-link px-2 py-1 rounded {% if not category %}active{% endif %}">
+                      <i class="fas fa-th-large mr-2 small"></i> All Products
+                    </a>
+                  </li>
+                  {% for category in links %}
+                    <li class="mb-1">
+                      <a href="{{ category.get_absolute_url }}" class="nav-link px-2 py-1 rounded">
+                        <i class="fas fa-chevron-right mr-2 small opacity-50"></i> {{ category.category_name }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </article>
 
-<div class="row">
-	<aside class="col-md-3">
-		
-<div class="card">
-	<article class="filter-group">
-		<header class="card-header">
-			<a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
-				<i class="icon-control fa fa-chevron-down"></i>
-				<h6 class="title">Categories</h6>
-			</a>
-		</header>
-		<div class="filter-content collapse show" id="collapse_1" style="">
-			<div class="card-body">
-				<a href="{% url 'store' %}">All Products</a>
-				<ul class="list-menu">
-				{% for category in links %}
-					<li><a href="{{ category.get_absolute_url }}">{{ category.category_name }}</a></li>
-				{% endfor %}
+          <hr class="my-0 opacity-25">
 
-				</ul>
+          <!-- Price Filter -->
+          <article class="filter-group">
+            <header class="card-header border-0 bg-transparent" data-toggle="collapse" data-target="#priceFilter">
+              <h6 class="font-weight-bold mb-0">
+                <i class="fas fa-tags mr-2 text-primary"></i> Price Range
+              </h6>
+            </header>
+            <div class="collapse show" id="priceFilter">
+              <div class="card-body pt-0">
+                <div class="form-row">
+                  <div class="form-group col-6">
+                    <label class="small font-weight-bold text-muted">Min</label>
+                    <select class="form-control form-control-sm border-0 bg-light">
+                      <option value="0">$0</option>
+                      <option value="50">$50</option>
+                      <option value="100">$100</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label class="small font-weight-bold text-muted">Max</label>
+                    <select class="form-control form-control-sm border-0 bg-light">
+                      <option value="100">$100</option>
+                      <option value="500">$500</option>
+                      <option value="1000">$1000+</option>
+                    </select>
+                  </div>
+                </div>
+                <button class="btn btn-primary btn-sm btn-block mt-2 shadow-sm">
+                  Apply Filter
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </aside>
+      </aside>
 
-			</div> <!-- card-body.// -->
-		</div>
-	</article> <!-- filter-group  .// -->
-	<article class="filter-group">
-		<header class="card-header">
-			<a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
-				<i class="icon-control fa fa-chevron-down"></i>
-				<h6 class="title">Sizes </h6>
-			</a>
-		</header>
-		<div class="filter-content collapse show" id="collapse_4" style="">
-			<div class="card-body">
-			  <label class="checkbox-btn">
-			    <input type="checkbox">
-			    <span class="btn btn-light"> XS </span>
-			  </label>
+      <!-- ===== MAIN CONTENT ===== -->
+      <main class="col-lg-9">
+        <!-- Top Bar: Sorting & View Options -->
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom slide-up">
+          <div>
+            <h5 class="mb-0 font-weight-bold">{{ product_count }} Products Found</h5>
+          </div>
+          <div class="d-flex align-items-center bg-white rounded-pill px-3 py-1 shadow-sm border">
+            <label class="mb-0 mr-2 small font-weight-bold text-muted">Sort by:</label>
+            <select class="form-control form-control-sm border-0 bg-transparent font-weight-600" style="width: auto; cursor: pointer;">
+              <option selected>Newest Items</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Highest Rated</option>
+            </select>
+          </div>
+        </div>
 
-			  <label class="checkbox-btn">
-			    <input type="checkbox">
-			    <span class="btn btn-light"> SM </span>
-			  </label>
+        <!-- Products Grid -->
+        {% if products %}
+          <div class="row">
+            {% for product in products %}
+              <div class="col-md-6 col-lg-4 mb-4 slide-up">
+                <div class="product-card">
+                  <!-- Product Image -->
+                  <div class="product-image">
+                    {% if product.stock <= 0 %}
+                      <span class="product-badge">Out of Stock</span>
+                    {% else %}
+                      <span class="stock-badge">In Stock</span>
+                    {% endif %}
+                    
+                    <a href="{{ product.get_absolute_url }}" class="w-100 h-100">
+                      <img src="{{ product.image.url }}" alt="{{ product.product_name }}">
+                    </a>
+                  </div>
 
-			  <label class="checkbox-btn">
-			    <input type="checkbox">
-			    <span class="btn btn-light"> LG </span>
-			  </label>
+                  <!-- Product Info -->
+                  <div class="product-info">
+                    <a href="{{ product.get_absolute_url }}" class="product-title">
+                      {{ product.product_name }}
+                    </a>
 
-			  <label class="checkbox-btn">
-			    <input type="checkbox">
-			    <span class="btn btn-light"> XXL </span>
-			  </label>
-		</div><!-- card-body.// -->
-		</div>
-	</article> <!-- filter-group .// -->
-	
-	<article class="filter-group">
-		<header class="card-header">
-			<a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
-				<i class="icon-control fa fa-chevron-down"></i>
-				<h6 class="title">Price range </h6>
-			</a>
-		</header>
-		<div class="filter-content collapse show" id="collapse_3" style="">
-			<div class="card-body">
-				
-				<div class="form-row">
-				<div class="form-group col-md-6">
-				  <label>Min</label>
-				  <!-- <input class="form-control" placeholder="$0" type="number"> -->
-				  	<select class="mr-2 form-control">
-						<option value="0">$0</option>
-						<option value="50">$50</option>
-						<option value="100">$100</option>
-						<option value="150">$150</option>
-						<option value="200">$200</option>
-						<option value="500">$500</option>
-						<option value="1000">$1000</option>
-					</select>
-				</div>
-				<div class="form-group text-right col-md-6">
-				  <label>Max</label>
-				  	<select class="mr-2 form-control">
-						<option value="50">$50</option>
-						<option value="100">$100</option>
-						<option value="150">$150</option>
-						<option value="200">$200</option>
-						<option value="500">$500</option>
-						<option value="1000">$1000</option>
-						<option value="2000">$2000+</option>
-					</select>
-				</div>
-				</div> <!-- form-row.// -->
-				<button class="btn btn-block btn-primary">Apply</button>
-			</div><!-- card-body.// -->
-		</div>
-	</article> <!-- filter-group .// -->
-	
-</div> <!-- card.// -->
+                    <!-- Rating -->
+                    <div class="product-rating">
+                      <div class="stars">
+                        {% for i in "12345" %}
+                          {% if product.averageReview > i|add:0 %}
+                            <i class="fas fa-star"></i>
+                          {% elif product.averageReview > i|add:-0.5 %}
+                            <i class="fas fa-star-half-alt"></i>
+                          {% else %}
+                            <i class="far fa-star"></i>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                      <span class="review-count">({{ product.countReview }})</span>
+                    </div>
 
-	</aside> <!-- col.// -->
-	<main class="col-md-9">
+                    <!-- Price -->
+                    <div class="product-price">
+                      <span class="price">${{ product.price }}</span>
+                    </div>
 
-<header class="border-bottom mb-4 pb-3">
-		<div class="form-inline">
-			<span class="mr-md-auto"> <b>{{ product_count }}</b> Items found </span>
-			
-		</div>
-</header><!-- sect-heading -->
+                    <!-- Actions -->
+                    <div class="product-actions">
+                      <a href="{{ product.get_absolute_url }}" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-eye"></i> View
+                      </a>
+                      <a href="{% url 'add_cart' product.id %}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
 
-<div class="row">
-	{% if products %}
-    {% for product in products %}
-	<div class="col-md-4">
-		<figure class="card card-product-grid">
-			<div class="img-wrap"> 
-				
-				<a href="{{ product.get_absolute_url }}"> <img src="{{ product.image.url }}"> </a>
-				
-			</div> <!-- img-wrap.// -->
-			<figcaption class="info-wrap">
-				<div class="fix-height">
-					<a href="{{ product.get_absolute_url }}" class="title">{{ product.product_name}}</a>
-					<div class="price-wrap mt-2">
-						<span class="price">${{ product.price }}</span>
-					</div> <!-- price-wrap.// -->
-				</div>
-				<a href="{{ product.get_absolute_url }}" class="btn btn-block btn-primary">view detail </a>
-			</figcaption>
-		</figure>
-	</div> <!-- col.// -->
-    {% endfor %}
-	{% else %}
-		<h3>No products found . Please, Try again </h3>
-	{% endif %}
-</div> <!-- row end.// -->
+          <!-- Pagination -->
+          {% if products.has_other_pages %}
+            <nav class="mt-5 slide-up" aria-label="Page navigation">
+              <ul class="pagination justify-content-center">
+                {% if products.has_previous %}
+                  <li class="page-item">
+                    <a class="page-link shadow-sm border-0 bg-white text-primary rounded icon-btn" href="?page={{ products.previous_page_number }}">
+                      <i class="fas fa-chevron-left"></i>
+                    </a>
+                  </li>
+                {% endif %}
 
+                {% for num in products.paginator.page_range %}
+                  {% if products.number == num %}
+                    <li class="page-item active mx-1">
+                      <span class="page-link shadow border-0 rounded">{{ num }}</span>
+                    </li>
+                  {% else %}
+                    <li class="page-item mx-1">
+                      <a class="page-link shadow-sm border-0 bg-white text-dark rounded" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
 
-<nav class="mt-4" aria-label="Page navigation sample">
-	{% if products.has_other_pages %}
-  <ul class="pagination">
-	{% if products.has_previous %}
-    <li class="page-item "><a class="page-link" href="?page={{ products.previous_page_number }}">Previous</a></li>
-	{% else %}
-	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-    {% endif %}
-    {% for num in products.paginator.page_range %}
-		{% if products.number == num %}
-        <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
-		{% else %}
-		<li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-		{% endif %}
-      {% endfor %}
-        
-      
-	{% if products.has_next %}
-	<li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">Next</a></li>
-	{% else %}
-    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-	{% endif %}
-  </ul>
-  {% endif %}
-</nav>
+                {% if products.has_next %}
+                  <li class="page-item">
+                    <a class="page-link shadow-sm border-0 bg-white text-primary rounded icon-btn" href="?page={{ products.next_page_number }}">
+                      <i class="fas fa-chevron-right"></i>
+                    </a>
+                  </li>
+                {% endif %}
+              </ul>
+            </nav>
+          {% endif %}
 
-	</main> <!-- col.// -->
-
-</div>
-
-</div> <!-- container .//  -->
+        {% else %}
+          <!-- No Products Found -->
+          <div class="text-center py-5">
+            <div class="mb-4">
+              <i class="fas fa-inbox fa-5x text-muted"></i>
+            </div>
+            <h4 class="font-weight-bold">No Products Found</h4>
+            <p class="text-muted mb-4">We couldn't find any products matching your criteria. Please try adjusting your filters.</p>
+            <a href="{% url 'store' %}" class="btn btn-primary">
+              <i class="fas fa-redo mr-1"></i> View All Products
+            </a>
+          </div>
+        {% endif %}
+      </main>
+    </div>
+  </div>
 </section>
+
+{% endblock %}
 
 {%endblock %}

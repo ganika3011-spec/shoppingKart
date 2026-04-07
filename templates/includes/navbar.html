@@ -1,95 +1,185 @@
 {% load static %}
-<header class="section-header">
-<nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
-<div class="container">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTop4">
-    <ul class="navbar-nav mr-auto">
-    	<li class="nav-item dropdown">
-		 	<a href="#" class="nav-link">   English </a>
-		    
-		</li>
-		<li class="nav-item dropdown">
-			<a href="#" class="nav-link"> USD </a>
-		</li>
-    </ul>
-    <ul class="navbar-nav">
-		<li><a href="#" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
-		<li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> Call us </a></li>
-	</ul> <!-- list-inline //  -->
-  </div> <!-- navbar-collapse .// -->
-</div> <!-- container //  -->
-</nav>
+<header class="header-top">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <!-- Logo -->
+      <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center shopping-kart-logo">
+        <i class="fas fa-shopping-bag mr-2" style="font-size: 28px; color: #007bff;"></i>
+        <span class="logo-text">ShoppingCart</span>
+      </a>
 
-<section class="header-main border-bottom">
-	<div class="container">
-<div class="row align-items-center">
-	<div class="col-lg-2 col-md-3 col-6">
-		<a href="{% url 'home' %}" class="brand-wrap">
-			<img class="logo" src="{% static 'images/logo.png' %}">
-		</a> <!-- brand-wrap.// -->
-	</div>
-	<div class="col-lg col-sm col-md col-6 flex-grow-0">
-		<div class="category-wrap dropdown d-inline-block float-right">
-			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 
-				<i class="fa fa-bars"></i> All category 
-			</button>
-			<div class="dropdown-menu">
-				<li><a href="{% url 'store' %}">All Products</a></li>
-				{% for category in links %}
-				<a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.category_name }}</a>
-				{% endfor %}
-			</div>
-		</div>  <!-- category-wrap.// -->
-	</div> <!-- col.// -->
-	<a href="{% url 'store' %}" class="btn btn-outline-primary">Store</a>
-	<div class="col-lg  col-md-6 col-sm-12 col">
-		<form action="{% url 'search' %}" class="search">
-			<div class="input-group w-100">
-			    <input type="text" class="form-control" style="width:60%;" placeholder="Search" name="keyword">
-			    
-			    <div class="input-group-append">
-			      <button class="btn btn-primary" type="submit">
-			        <i class="fa fa-search"></i>
-			      </button>
-			    </div>
-		    </div>
-		</form> <!-- search-wrap .end// -->
-	</div> <!-- col.// -->
-	<div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
-				<div class="d-flex justify-content-end mb-3 mb-lg-0">
-					{% if user.id is None %}
-					<div class="widget-header">
-						<small class="title text-muted">Welcome guest!</small>
-						<div> 
-							<a href="{% url 'login' %}">Sign in</a> <span class="dark-transp"> | </span>
-							<a href="{% url 'register' %}"> Register</a>
-						</div>
-					</div>
-					{% else %}
-					<div class="widget-header">
-						<small class="title text-muted">Welcome {{ user.first_name }}</small>
+      <!-- Mobile Toggle -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-						<div> 
-							<a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
-							<a href="{% url 'logout' %}">Logout</a>
-						</div>
-					</div>
-					{% endif %}
-					<a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
-						<div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-						<span class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
-					</a>
-				</div> <!-- widgets-wrap.// -->
-			
-			</div> <!-- col.// -->
-</div> <!-- row.// -->
-	</div> <!-- container.// -->
-</section> <!-- header-main .// -->
+      <!-- Navigation Items -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Categories Dropdown -->
+        <div class="dropdown mr-lg-3">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bars mr-2"></i> Categories
+          </button>
+          <div class="dropdown-menu dropdown-menu-left" style="min-width: 200px;">
+            <a class="dropdown-item" href="{% url 'store' %}">
+              <i class="fas fa-th mr-2"></i> All Products
+            </a>
+            <div class="dropdown-divider"></div>
+            {% for category in links %}
+              <a class="dropdown-item transition-hover" href="{{ category.get_absolute_url }}">
+                <span class="mr-2">📦</span> {{ category.category_name }}
+              </a>
+            {% endfor %}
+          </div>
+        </div>
 
+        <!-- Search Bar -->
+        <form action="{% url 'search' %}" class="form-inline my-2 my-lg-0 flex-grow-1 mx-lg-3">
+          <div class="input-group w-100">
+            <input type="text" class="form-control" placeholder="Search products..." name="keyword" required>
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
 
+        <!-- User & Cart -->
+        <ul class="navbar-nav ml-auto">
+          <!-- User Profile -->
+          <li class="nav-item dropdown">
+            {% if user.id is None %}
+              <a class="nav-link" href="{% url 'login' %}">
+                <i class="fas fa-user mr-1"></i> Sign In
+              </a>
+            {% else %}
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-circle mr-1"></i> {{ user.first_name|default:"Account" }}
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{% url 'dashboard' %}">
+                  <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+                </a>
+                <a class="dropdown-item" href="{% url 'my_orders' %}">
+                  <i class="fas fa-history mr-2"></i> Order History
+                </a>
+                <a class="dropdown-item" href="{% url 'wishlist' %}">
+                  <i class="fas fa-heart mr-2"></i> Wishlist
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'logout' %}">
+                  <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                </a>
+              </div>
+            {% endif %}
+          </li>
 
+          <!-- Cart Icon -->
+          <li class="nav-item ml-3">
+            <a href="{% url 'cart' %}" class="nav-link cart-icon position-relative">
+              <i class="fas fa-shopping-cart fa-lg"></i>
+              {% if cart_count > 0 %}
+                <span class="position-absolute top-0 start-100 translate-middle badge badge-danger rounded-pill cart-badge" 
+                      style="top: -8px; right: -8px;">
+                  {{ cart_count }}
+                </span>
+              {% endif %}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
 
-</header> 
+<style>
+  .header-top {
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .navbar {
+    padding: 0.75rem 0;
+  }
+
+  .transition-hover {
+    transition: all 300ms ease-in-out;
+  }
+
+  .transition-hover:hover {
+    color: #007bff !important;
+    padding-left: 1.5rem !important;
+  }
+
+  .dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    animation: slideDown 300ms ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cart-badge {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .nav-link {
+    position: relative;
+    color: #495057 !important;
+    font-weight: 500;
+    transition: color 300ms ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #007bff;
+    transition: width 300ms ease;
+  }
+
+  .nav-link:hover {
+    color: #007bff !important;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  @media (max-width: 991px) {
+    .navbar-collapse {
+      margin-top: 1rem;
+      border-top: 1px solid #e9ecef;
+      padding-top: 1rem;
+    }
+
+    .dropdown-menu {
+      opacity: 1 !important;
+      position: relative !important;
+      float: none !important;
+      box-shadow: none;
+    }
+  }
+</style>

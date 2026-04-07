@@ -1,19 +1,241 @@
-<footer class="section-footer border-top">
-	<div class="container">
-		<section class="footer-bottom border-top row">
-			<div class="col-md-2">
-				<p class="text-muted"> &copy 2019 Company name </p>
-			</div>
-			<div class="col-md-8 text-md-center">
-				<span  class="px-2">info@pixsellz.io</span>
-				<span  class="px-2">+879-332-9375</span>
-				<span  class="px-2">Street name 123, Avanue abc</span>
-			</div>
-			<div class="col-md-2 text-md-right text-muted">
-				<i class="fab fa-lg fa-cc-visa"></i>
-				<i class="fab fa-lg fa-cc-paypal"></i>
-				<i class="fab fa-lg fa-cc-mastercard"></i>
-			</div>
-		</section>
-	</div><!-- //container -->
+{% load static %}
+<footer class="footer-section bg-dark text-white mt-5 pt-5">
+  <div class="container">
+    <!-- Top Footer Section -->
+    <div class="row mb-5">
+      <!-- About Section -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5 class="font-weight-bold mb-3">
+          <i class="fas fa-shopping-bag mr-2"></i> ShoppingKart
+        </h5>
+        <p class="text-muted mb-3">Your one-stop online shopping destination for quality products at great prices.</p>
+        <div class="social-links">
+          <a href="#" class="btn btn-sm btn-outline-light mr-2" title="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="btn btn-sm btn-outline-light mr-2" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="btn btn-sm btn-outline-light mr-2" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="btn btn-sm btn-outline-light" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5 class="font-weight-bold mb-3">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="{% url 'home' %}" class="text-muted text-decoration-none footer-link">🏠 Home</a></li>
+          <li class="mb-2"><a href="{% url 'store' %}" class="text-muted text-decoration-none footer-link">🛍️ Shop</a></li>
+          <li class="mb-2"><a href="#" class="text-muted text-decoration-none footer-link">ℹ️ About Us</a></li>
+          <li class="mb-2"><a href="#" class="text-muted text-decoration-none footer-link">📞 Contact</a></li>
+          <li class="mb-2"><a href="#" class="text-muted text-decoration-none footer-link">❓ FAQ</a></li>
+          <li class="mb-2"><a href="#" class="text-muted text-decoration-none footer-link">🎁 Gift Cards</a></li>
+        </ul>
+      </div>
+
+      <!-- Categories -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5 class="font-weight-bold mb-3">Popular Categories</h5>
+        <ul class="list-unstyled">
+          {% for category in links|slice:":5" %}
+            <li class="mb-2">
+              <a href="{{ category.get_absolute_url }}" class="text-muted text-decoration-none footer-link">
+                📦 {{ category.category_name }}
+              </a>
+            </li>
+          {% endfor %}
+          <li class="mb-2"><a href="{% url 'store' %}" class="text-muted text-decoration-none footer-link text-primary">→ View All Categories</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5 class="font-weight-bold mb-3">Contact Us</h5>
+        <p class="text-muted mb-2">
+          <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
+          <strong>Address</strong><br>
+          <span class="ml-4">123 Shopping Street<br>City, State 12345</span>
+        </p>
+        <p class="text-muted mb-2">
+          <i class="fas fa-phone mr-2 text-primary"></i>
+          <strong>Phone</strong><br>
+          <a href="tel:+1234567890" class="text-muted text-decoration-none footer-link ml-4">+1 (234) 567-890</a>
+        </p>
+        <p class="text-muted mb-2">
+          <i class="fas fa-envelope mr-2 text-primary"></i>
+          <strong>Email</strong><br>
+          <a href="mailto:support@shoppingkart.com" class="text-muted text-decoration-none footer-link ml-4">support@shoppingkart.com</a>
+        </p>
+        <p class="text-muted">
+          <i class="fas fa-clock mr-2 text-primary"></i>
+          <strong>Hours</strong><br>
+          <span class="ml-4">Mon - Fri: 9AM - 6PM<br>Sat - Sun: 10AM - 4PM</span>
+        </p>
+      </div>
+    </div>
+
+    <hr class="bg-secondary">
+
+    <!-- Middle Footer Section -->
+    <div class="row mb-4">
+      <!-- Payment Methods -->
+      <div class="col-lg-6 mb-3 mb-lg-0">
+        <h6 class="font-weight-bold mb-2">
+          <i class="fas fa-credit-card mr-2 text-primary"></i> We Accept
+        </h6>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="badge badge-light" title="Visa"><i class="fab fa-cc-visa"></i> Visa</span>
+          <span class="badge badge-light" title="Mastercard"><i class="fab fa-cc-mastercard"></i> Mastercard</span>
+          <span class="badge badge-light" title="PayPal"><i class="fab fa-cc-paypal"></i> PayPal</span>
+          <span class="badge badge-light" title="Google Pay">💳 Google Pay</span>
+          <span class="badge badge-light" title="Apple Pay">🍎 Apple Pay</span>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="col-lg-6">
+        <h6 class="font-weight-bold mb-2">
+          <i class="fas fa-star mr-2 text-primary"></i> Why Choose Us?
+        </h6>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="badge badge-light">✓ Free Shipping</span>
+          <span class="badge badge-light">✓ Secure Payment</span>
+          <span class="badge badge-light">✓ Easy Returns</span>
+          <span class="badge badge-light">✓ 24/7 Support</span>
+          <span class="badge badge-light">✓ Authentic Products</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="bg-secondary">
+
+    <!-- Newsletter Section -->
+    <div class="row mb-4">
+      <div class="col-lg-6 mb-3 mb-lg-0">
+        <h6 class="font-weight-bold mb-2">
+          <i class="fas fa-envelope mr-2 text-primary"></i> Subscribe to Newsletter
+        </h6>
+        <p class="text-muted small mb-2">Get exclusive deals and latest updates delivered to your inbox!</p>
+        <div class="input-group input-group-sm">
+          <input type="email" class="form-control" placeholder="Enter your email address" aria-label="Email">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">Subscribe</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile App -->
+      <div class="col-lg-6">
+        <h6 class="font-weight-bold mb-2">
+          <i class="fas fa-mobile-alt mr-2 text-primary"></i> Download Our App
+        </h6>
+        <p class="text-muted small mb-2">Shop on the go with our mobile application</p>
+        <div class="d-flex gap-2">
+          <a href="#" class="btn btn-sm btn-outline-light" title="App Store">
+            <i class="fab fa-apple mr-1"></i> App Store
+          </a>
+          <a href="#" class="btn btn-sm btn-outline-light" title="Google Play">
+            <i class="fab fa-google-play mr-1"></i> Google Play
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="bg-secondary">
+
+    <!-- Bottom Footer -->
+    <div class="row align-items-center py-3">
+      <div class="col-lg-4 col-md-6 mb-2 mb-lg-0">
+        <p class="text-muted small mb-0">
+          <i class="fas fa-copyright mr-1"></i> 2026 ShoppingKart. All Rights Reserved.
+        </p>
+      </div>
+
+      <div class="col-lg-4 col-md-6 text-center mb-2 mb-lg-0">
+        <div class="text-muted small">
+          <img src="https://img.shields.io/badge/SSL-Secured-green?style=flat-square" alt="SSL Secured" style="max-height: 20px;">
+        </div>
+      </div>
+
+      <div class="col-lg-4 text-lg-right">
+        <a href="#" class="text-muted text-decoration-none small footer-link mr-3">🔒 Privacy Policy</a>
+        <a href="#" class="text-muted text-decoration-none small footer-link mr-3">📋 Terms & Conditions</a>
+        <a href="#" class="text-muted text-decoration-none small footer-link">🗺️ Sitemap</a>
+      </div>
+    </div>
+  </div>
 </footer>
+
+<style>
+  .footer-section {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border-top: 4px solid #007bff;
+    margin-top: 5rem;
+  }
+
+  .footer-link {
+    transition: all 300ms ease;
+    display: inline-block;
+  }
+
+  .footer-link:hover {
+    color: #007bff !important;
+    transform: translateX(4px);
+  }
+
+  .social-links .btn {
+    transition: all 300ms ease;
+  }
+
+  .social-links .btn:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+    transform: translateY(-2px);
+  }
+
+  .badge {
+    background-color: rgba(0, 123, 255, 0.15) !important;
+    color: #007bff !important;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .input-group-sm .btn-primary {
+    background: #007bff;
+    border-color: #007bff;
+  }
+
+  .input-group-sm .btn-primary:hover {
+    background: #0056b3;
+    border-color: #0056b3;
+  }
+
+  @media (max-width: 768px) {
+    .footer-section {
+      padding-top: 3rem !important;
+    }
+
+    .col-md-6 {
+      margin-bottom: 2rem;
+    }
+
+    h5 {
+      font-size: 1rem !important;
+    }
+
+    .text-lg-right {
+      text-align: left;
+    }
+  }
+
+  /* Gap utility */
+  .gap-2 {
+    gap: 0.5rem;
+  }
+</style>
+      padding-top: 3rem !important;
+    }
+
+    .col-md-6 {
+      margin-bottom: 2rem;
+    }
+  }
+</style>

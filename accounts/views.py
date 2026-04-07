@@ -1,9 +1,9 @@
 from email.message import EmailMessage
 from pyexpat.errors import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render,get_object_or_404
 
-from accounts.forms import RegistrationForm,LoginForm
-from accounts.models import Account
+from accounts.forms import RegistrationForm,LoginForm,UserForm,UserProfileForm
+from accounts.models import Account,UserProfile
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 
@@ -18,7 +18,8 @@ from django.http import HttpResponse
 from carts.models import Cart, CartItem
 from carts.views import _cart_id
 import requests
-
+from orders.models import Order
+from store.models import Product, Wishlist
 
 def register(request):
     form= RegistrationForm()
@@ -158,7 +159,12 @@ def activate(request,uidb64, token):
           return redirect('register')
 @login_required(login_url='login')
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+   # orders= Order.objects.order_by("-created_at").filter(user_id=request,is_ordered=True)
+   # orders_count=orders.count()
+   # context={
+   #     "orders_count":orders_count,
+   # }
+   return render(request, 'accounts/dashboard.html')
 
 def forgot_password(request):
     if request.method == 'POST':
@@ -217,3 +223,128 @@ def reset_password(request):
             return redirect('reset_password')
     else:
         return render(request, 'accounts/reset_password.html')       
+    
+@login_required(login_url='login')
+def my_orders(request):
+    """Display user's order history."""
+    orders = Order.objects.filter(
+        user=request.user,
+        is_ordered=True
+    ).order_by('-created_at')
+    
+    context = {
+        'orders': orders,
+        'orders_count': orders.count(),
+    }
+    return render(request, "accounts/my_orders.html", context)
+
+@login_required(login_url='login')
+def edit_profile(request):
+    #userprofile=get_object_or_404(UserProfile,user=request.user)
+    #if request.method=="POST":
+    #    user_form= UserForm(request.POST,instance=request.user)
+   #     profile_form= UserProfileForm(request.POST,request.FILES,isinstance=userprofile)
+   #     if user_form.is_valid() and profile_form.is_valid() :
+   #         user_form.save()
+   #         profile_form.save()
+   #         messages.success(request,"Your Profile has been updated!")
+   #         return redirect("edit_profile")
+    #else:
+     #   user_form= UserForm(instance=request.user)
+     #   profile_form= UserProfile(instance= userprofile)
+     #   context={
+     #       'user_form':user_form,
+     #       "profile_form":profile_form,
+     #       'userprofile':userprofile,
+      #  }
+    return render(request,"accounts/edit_profile.html")
+@login_required(login_url='login')
+def change_password(request):   
+    if request.method=="POST":
+        current_password= request.POST['current_password']
+        new_password= request.POST['create_new_password']
+        confirm_new_password= request.POST['confirm_new_password']
+        user= Account.objects.get(username__exact=request.user.username)
+        if new_password== confirm_new_password:
+            success= user.check_password(current_password)
+            if success:
+                user.set_password(new_password)
+                user.save()
+                messages.success(request,"Password updated successfully!")
+                return redirect("change_password")
+            else:
+                messages.error(request,"Please enter valid current password!")
+                return redirect("change_password")
+        else:
+            messages.error(request,"Password does not match!")
+            return redirect("change_password")
+    return render(request,"accounts/change_password.html")
+
+
+def order_detail(request, order_id):
+    '''
+    order_detail=OrderProduct.objects.filter(order__order_number=order_id)
+    order= Order.objects.get(order_number=order_id)
+    subtotal=0
+    for i in order_detail:
+        subtotal += i.product_price * i.quantity
+    context={
+        'order_detail':order_detail,
+        'order':order,
+        'subtotal':subtotal,
+    }
+    '''
+    return render(request, 'accounts/order_detail.html')
+
+
+@login_required(login_url='login')
+def wishlist(request):
+    """Display user's wishlist."""
+    try:
+        wishlist_obj = Wishlist.objects.get(user=request.user)
+        products = wishlist_obj.products.all()
+        product_count = products.count()
+    except Wishlist.DoesNotExist:
+        wishlist_obj = None
+        products = Product.objects.none()
+        product_count = 0
+    
+    context = {
+        'wishlist': wishlist_obj,
+        'products': products,
+        'product_count': product_count,
+    }
+    return render(request, 'accounts/wishlist.html', context)
+
+
+@login_required(login_url='login')
+def add_to_wishlist(request, product_id):
+    """Add product to wishlist."""
+    product = get_object_or_404(Product, id=product_id)
+    wishlist_obj, created = Wishlist.objects.get_or_create(user=request.user)
+    
+    if wishlist_obj.products.filter(id=product_id).exists():
+        messages.warning(request, f'{product.product_name} is already in your wishlist!')
+    else:
+        wishlist_obj.products.add(product)
+        messages.success(request, f'{product.product_name} added to wishlist!')
+    
+    return redirect(request.META.get('HTTP_REFERER', 'store'))
+
+
+@login_required(login_url='login')
+def remove_from_wishlist(request, product_id):
+    """Remove product from wishlist."""
+    product = get_object_or_404(Product, id=product_id)
+    
+    try:
+        wishlist_obj = Wishlist.objects.get(user=request.user)
+        if wishlist_obj.products.filter(id=product_id).exists():
+            wishlist_obj.products.remove(product)
+            messages.success(request, f'{product.product_name} removed from wishlist!')
+        else:
+            messages.warning(request, f'{product.product_name} is not in your wishlist!')
+    except Wishlist.DoesNotExist:
+        messages.warning(request, 'Wishlist not found!')
+    
+    return redirect(request.META.get('HTTP_REFERER', 'wishlist'))

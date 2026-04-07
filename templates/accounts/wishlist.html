@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="section-content padding-y bg-light">
+  {% include "includes/alerts.html" %}
+  <div class="container">
+    <div class="row">
+      {% include 'includes/dashboard_sidebar.html' %}
+      
+      <main class="col-lg-9">
+        <!-- Header -->
+        <div class="card mb-4" style="border: none; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border-radius: 12px;">
+          <div class="card-body" style="padding: 30px;">
+            <h2 class="card-title mb-2">
+              <i class="fas fa-heart mr-2"></i> My Wishlist
+            </h2>
+            <p class="mb-0" style="opacity: 0.9;">
+              Saved Items: <strong>{{ product_count }}</strong>
+            </p>
+          </div>
+        </div>
+
+        <!-- Wishlist Products -->
+        {% if products %}
+          <div class="wishlist-container">
+            <!-- Product Grid -->
+            <div class="row">
+              {% for product in products %}
+              <div class="col-lg-6 mb-4">
+                <div class="card" style="border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; transition: all 300ms ease; height: 100%;">
+                  <div class="row no-gutters" style="height: 100%;">
+                    <!-- Product Image -->
+                    <div class="col-md-5" style="overflow: hidden; background: white;">
+                      <a href="{{ product.get_absolute_url }}" class="d-block h-100">
+                        <img src="{{ product.image.url }}" alt="{{ product.product_name }}" 
+                             style="width: 100%; height: 200px; object-fit: cover; transition: transform 300ms ease;">
+                      </a>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="col-md-7" style="display: flex; flex-direction: column; justify-content: space-between; padding: 20px;">
+                      <div>
+                        <a href="{{ product.get_absolute_url }}" class="d-block" style="text-decoration: none; color: inherit;">
+                          <h5 class="card-title" style="font-size: 16px; margin-bottom: 10px; font-weight: 600;">
+                            {{ product.product_name|truncatewords:5 }}
+                          </h5>
+                        </a>
+
+                        <!-- Rating -->
+                        <div class="mb-2">
+                          <div class="text-warning small">
+                            {% for i in "12345" %}
+                              {% if i|add:0 <= product.average_review %}
+                                <i class="fas fa-star" style="color: #ffc107;"></i>
+                              {% else %}
+                                <i class="far fa-star" style="color: #ddd;"></i>
+                              {% endif %}
+                            {% endfor %}
+                            <span class="text-muted">({{ product.review_count }})</span>
+                          </div>
+                        </div>
+
+                        <!-- Stock Status -->
+                        <p class="small mb-3">
+                          {% if product.stock > 0 %}
+                            <span class="badge badge-success">✓ In Stock</span>
+                          {% else %}
+                            <span class="badge badge-danger">Out of Stock</span>
+                          {% endif %}
+                        </p>
+
+                        <!-- Price -->
+                        <h4 style="color: #007bff; margin-bottom: 0;">₹{{ product.price|floatformat:2 }}</h4>
+                      </div>
+
+                      <!-- Actions -->
+                      <div class="mt-3 d-flex gap-2" style="gap: 10px;">
+                        <a href="{{ product.get_absolute_url }}" class="btn btn-primary btn-sm flex-grow-1" style="padding: 8px; border-radius: 6px;">
+                          <i class="fas fa-eye mr-1"></i> View
+                        </a>
+                        <a href="{% url 'remove_from_wishlist' product.id %}" class="btn btn-danger btn-sm" style="padding: 8px 15px; border-radius: 6px;">
+                          <i class="fas fa-trash mr-1"></i> Remove
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% else %}
+          <!-- Empty State -->
+          <div class="card" style="border: none; text-align: center; padding: 60px 20px; background: #f8f9fa; border-radius: 12px;">
+            <i class="fas fa-heart" style="font-size: 60px; color: #ccc; margin-bottom: 20px;"></i>
+            <h4 class="text-muted mb-2">Your Wishlist is Empty</h4>
+            <p class="text-muted mb-4">Add your favorite products to your wishlist and find them here later!</p>
+            <a href="{% url 'store' %}" class="btn btn-primary" style="padding: 10px 30px;">
+              <i class="fas fa-shopping-bag mr-2"></i> Continue Shopping
+            </a>
+          </div>
+        {% endif %}
+      </main>
+    </div>
+  </div>
+</section>
+
+<style>
+  .card {
+    transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+  }
+
+  .card:hover img {
+    transform: scale(1.05);
+  }
+
+  .badge {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 11px;
+  }
+
+  .btn-sm {
+    font-size: 13px;
+    font-weight: 600;
+  }
+</style>
+{% endblock %}
