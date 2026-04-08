@@ -188,6 +188,18 @@ SECURE_CONTENT_SECURITY_POLICY = {
     'style-src': ("'self'", "'unsafe-inline'"),
 }
 
+# Create logs directory if it doesn't exist
+LOGS_DIR = BASE_DIR / 'logs'
+LOGS_DIR.mkdir(parents=True, exist_ok=True)
+
+# Detect if running on Render
+IS_RENDER = config('RENDER', default=False, cast=bool)
+
+# Define logging handlers based on environment
+LOGGING_HANDLERS = ['console']
+if not IS_RENDER:
+    LOGGING_HANDLERS.append('file')
+
 # Logging Configuration
 LOGGING = {
     'version': 1,
@@ -227,12 +239,12 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file'],
+            'handlers': LOGGING_HANDLERS,
             'level': config('LOG_LEVEL', default='INFO'),
             'propagate': True,
         },
         'store': {
-            'handlers': ['console', 'file'],
+            'handlers': LOGGING_HANDLERS,
             'level': 'DEBUG',
             'propagate': False,
         },
