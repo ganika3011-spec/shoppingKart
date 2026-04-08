@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 
 # Server socket configuration
-bind = "0.0.0.0:8000"  # Listen on all interfaces
+bind = "0.0.0.0:" + os.environ.get("PORT", "8000")
 backlog = 2048
 
 # Worker processes
@@ -18,15 +18,15 @@ keepalive = 2
 
 # Server mechanics
 daemon = False
-pidfile = "/var/run/gunicorn.pid"
+pidfile = None
 umask = 0
 user = None
 group = None
 tmp_upload_dir = None
 
 # Logging
-accesslog = "/var/log/gunicorn/access.log"
-errorlog = "/var/log/gunicorn/error.log"
+accesslog = "-"
+errorlog = "-"
 loglevel = "info"
 access_log_format = '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s" %(D)s'
 
