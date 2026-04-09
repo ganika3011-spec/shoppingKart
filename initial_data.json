@@ -1,0 +1,420 @@
+[
+{
+  "model": "category.category",
+  "pk": 1,
+  "fields": {
+    "category_name": "shirts",
+    "slug": "shirts",
+    "description": "very classy",
+    "image": "photos/categories/shirts.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 2,
+  "fields": {
+    "category_name": "t shirts",
+    "slug": "t-shirts",
+    "description": "very cool",
+    "image": "photos/categories/tshirts.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 3,
+  "fields": {
+    "category_name": "shoes",
+    "slug": "shoes",
+    "description": "looks different",
+    "image": "photos/categories/shoes.png"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 4,
+  "fields": {
+    "category_name": "Jackets",
+    "slug": "jackets",
+    "description": "looks stunning",
+    "image": "photos/categories/jackets.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 5,
+  "fields": {
+    "category_name": "Jeans",
+    "slug": "jeans",
+    "description": "fully Denim",
+    "image": "photos/categories/jeans.jpg"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 1,
+  "fields": {
+    "product_name": "Blue shirt",
+    "slug": "blue-shirt",
+    "description": "very classy",
+    "price": "400.00",
+    "image": "photos/products/Blue-Shirt.jpg",
+    "stock": 4,
+    "is_available": true,
+    "category": 1,
+    "created_date": "2026-01-28T12:11:53.778Z",
+    "modified_date": "2026-01-29T08:41:00.782Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 2,
+  "fields": {
+    "product_name": "Tshirt",
+    "slug": "tshirt",
+    "description": "cool",
+    "price": "200.00",
+    "image": "photos/products/Great-Tshirt.jpg",
+    "stock": 1,
+    "is_available": true,
+    "category": 2,
+    "created_date": "2026-01-28T12:12:36.883Z",
+    "modified_date": "2026-01-28T12:12:36.883Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 3,
+  "fields": {
+    "product_name": "Wrangler-shirt",
+    "slug": "wrangler-shirt",
+    "description": "Wrangler shirts are rugged, western-inspired apparel known for durability, functionality, and classic style, originating from a heritage of catering to cowboys and rodeo riders. Key features include sturdy fabrics (denim, cotton, twill), snap-front closures, western yokes, and double-pocket designs that offer both comfort and utility.",
+    "price": "250.00",
+    "image": "photos/products/Wrangler-Shirt.jpg",
+    "stock": 2,
+    "is_available": true,
+    "category": 1,
+    "created_date": "2026-01-28T12:15:52.474Z",
+    "modified_date": "2026-01-28T12:15:52.474Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 4,
+  "fields": {
+    "product_name": "US Polo Assn_Jacket",
+    "slug": "us-polo-assn_jacket",
+    "description": "U.S. Polo Assn. jackets are known for their blend of classic American styling and modern trends, offering a range of options from casual denim to insulated puffer jackets. They are designed to provide both style and comfort for various occasions and weather conditions",
+    "price": "1500.00",
+    "image": "photos/products/US-Polo-Assn_Jacket.jpg",
+    "stock": 5,
+    "is_available": true,
+    "category": 4,
+    "created_date": "2026-01-28T12:17:22.300Z",
+    "modified_date": "2026-01-28T12:17:22.300Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 5,
+  "fields": {
+    "product_name": "Puma Ferrari shoes",
+    "slug": "puma-ferrari-shoes",
+    "description": "Puma offers a wide range of official Scuderia Ferrari shoes, blending motorsport heritage with casual, street-ready style. These collaborations feature iconic team colors, brand logos, and designs inspired by racing technology, available in popular styles like the Drift Cat, Speedcat, and Palermo.",
+    "price": "700.00",
+    "image": "photos/products/Puma-Ferrari-Shoes.jpg",
+    "stock": 3,
+    "is_available": true,
+    "category": 3,
+    "created_date": "2026-01-28T12:18:35.855Z",
+    "modified_date": "2026-01-28T12:18:35.855Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 6,
+  "fields": {
+    "product_name": "Mavi jeans",
+    "slug": "mavi-jeans",
+    "description": "Mavi offers a wide range of denim jeans for both men and women, known for their focus on comfortable fits and quality fabrics, including sustainable blends. You can find various styles from classic straight-leg to modern skinny and relaxed fits in a variety of washes.",
+    "price": "600.00",
+    "image": "photos/products/Mavi_jeans.jpg",
+    "stock": 7,
+    "is_available": true,
+    "category": 5,
+    "created_date": "2026-01-28T12:19:39.580Z",
+    "modified_date": "2026-02-03T07:10:35.935Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 7,
+  "fields": {
+    "product_name": "Jordan shoes",
+    "slug": "jordan-shoes",
+    "description": "Jordan shoes are an iconic line of basketball and sportswear sneakers produced by Nike, Inc. under the Jordan Brand. They are known for their blend of innovative technology, high-quality materials, and significant cultural impact that extends beyond sports into fashion and hip-hop culture.",
+    "price": "1500.00",
+    "image": "photos/products/jordan-true-flight-basketball-shoes.jpg",
+    "stock": 9,
+    "is_available": true,
+    "category": 3,
+    "created_date": "2026-01-30T05:52:27.433Z",
+    "modified_date": "2026-02-03T07:10:35.922Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 8,
+  "fields": {
+    "product_name": "jeans",
+    "slug": "jeans",
+    "description": "uydgjkew",
+    "price": "300.00",
+    "image": "photos/products/image1.jpg",
+    "stock": 2,
+    "is_available": true,
+    "category": 5,
+    "created_date": "2026-02-17T09:47:14.125Z",
+    "modified_date": "2026-02-17T09:47:14.125Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "variation_category": "size",
+    "variation_value": "medium",
+    "is_active": true,
+    "created_date": "2026-01-30T06:28:37.444Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 2,
+  "fields": {
+    "product": 3,
+    "variation_category": "color",
+    "variation_value": "Red",
+    "is_active": true,
+    "created_date": "2026-01-30T06:38:45.132Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 3,
+  "fields": {
+    "product": 5,
+    "variation_category": "size",
+    "variation_value": "Large",
+    "is_active": true,
+    "created_date": "2026-01-30T06:53:34.898Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 4,
+  "fields": {
+    "product": 7,
+    "variation_category": "size",
+    "variation_value": "extra large",
+    "is_active": true,
+    "created_date": "2026-01-30T06:53:52.483Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 5,
+  "fields": {
+    "product": 4,
+    "variation_category": "color",
+    "variation_value": "Brown",
+    "is_active": true,
+    "created_date": "2026-01-30T06:54:21.374Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 6,
+  "fields": {
+    "product": 4,
+    "variation_category": "size",
+    "variation_value": "small",
+    "is_active": true,
+    "created_date": "2026-01-30T07:06:00.194Z"
+  }
+},
+{
+  "model": "store.reviewrating",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "user": 19,
+    "subject": "jghj",
+    "review": "vghc",
+    "rating": 3.0,
+    "ip": "127.0.0.1",
+    "status": true,
+    "created_at": "2026-02-04T11:09:45.256Z",
+    "updated_at": "2026-02-04T11:09:45.256Z"
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$WzPBR1A6UFjM0qSllLWY77$m7HPjbB1hSJF8RoQVOJ1XLToCoTP/rqmzLH3EEfjNNo=",
+    "first_name": "ganika",
+    "last_name": "chauhan",
+    "username": "djangoadmin",
+    "email": "ganika@gmail.com",
+    "phone_number": "",
+    "date_joined": "2026-01-28T11:43:00.615Z",
+    "last_login": "2026-04-07T10:37:10.820Z",
+    "is_admin": true,
+    "is_staff": true,
+    "is_active": true,
+    "is_superadmin": true
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$6tEUKyJ06oUnK1XlDu5EZJ$Pa/Bfm7y3w2Es3GLnyyZBCyoVUQHrcPiuJ3rLXFfwSg=",
+    "first_name": "ram",
+    "last_name": "kumar",
+    "username": "admin",
+    "email": "admin@company.com",
+    "phone_number": "1234567812",
+    "date_joined": "2026-01-31T09:25:03.574Z",
+    "last_login": "2026-01-31T09:25:03.574Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": false,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$u57xJ87yH87OFvP6BJr5eb$vqX73S7iTuJ1lb26lft5EDN0HMPu7kfj/edWtbdbYt4=",
+    "first_name": "seeta",
+    "last_name": "sharma",
+    "username": "seeta",
+    "email": "seeta@gmail.com",
+    "phone_number": "1234567890",
+    "date_joined": "2026-01-31T11:06:49.999Z",
+    "last_login": "2026-01-31T11:06:49.999Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": false,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$c7IRPArpUqcPgXVkj7FLRS$WKSUFDPGnyXBmqWMFEeEqTb0+l+vj325z0KaAggd0no=",
+    "first_name": "Rohan",
+    "last_name": "yadav",
+    "username": "rohan",
+    "email": "rohan@gmail.com",
+    "phone_number": "87654321",
+    "date_joined": "2026-01-31T12:04:31.268Z",
+    "last_login": "2026-01-31T12:04:31.268Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": false,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 19,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$mSPqgEOspmGIiiPFQATKmW$QC/jJEtg4Q6HgDVrf8XNd+7MbcnLz97+glh9KBKz9FM=",
+    "first_name": "ganika",
+    "last_name": "chauhan",
+    "username": "ganika3011",
+    "email": "ganika3011@gmail.com",
+    "phone_number": "8595287008",
+    "date_joined": "2026-02-02T06:48:41.522Z",
+    "last_login": "2026-02-06T06:28:45.379Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 20,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$J8CQ9x9bj7VrKhFom56CHr$NJNuitw9Kbqo/xm6kKq1917VJ0qzqvH7QipT28eudrs=",
+    "first_name": "Pranjali",
+    "last_name": "Sharma",
+    "username": "pranjalisharma01.07",
+    "email": "pranjalisharma01.07@gmail.com",
+    "phone_number": "7065677185",
+    "date_joined": "2026-03-20T11:42:18.611Z",
+    "last_login": "2026-03-20T11:42:18.611Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": false,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 21,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$WKcbPVBIuaXW61xcRt1R3j$P451rwWq80BcIcEPnXG+64481B7WjApJdyjMBH7zbl0=",
+    "first_name": "Test",
+    "last_name": "User",
+    "username": "testuser",
+    "email": "test@example.com",
+    "phone_number": "",
+    "date_joined": "2026-04-07T11:17:14.008Z",
+    "last_login": "2026-04-07T11:22:24.307Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "pk": 22,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$ZE6A4pkVBMswDXyIAJwMbi$xBPSCDUuEK9MEBpO1Zo+H5tP3Cmse7JLR9xfYF50z5U=",
+    "first_name": "Cart",
+    "last_name": "Test",
+    "username": "carttest",
+    "email": "carttest@example.com",
+    "phone_number": "",
+    "date_joined": "2026-04-07T11:23:25.527Z",
+    "last_login": "2026-04-07T11:23:26.620Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 1,
+  "fields": {
+    "user": 19,
+    "address_line_1": "iuhygtfrds",
+    "address_line_2": "iuhygthr",
+    "profile_picture": "userprofile/Screenshot_2026-01-16_14-42-17.png",
+    "city": "qwdfergt",
+    "state": "sdfv",
+    "country": "sdfg",
+    "postal_code": "",
+    "updated_at": "2026-04-07T10:15:06.369Z"
+  }
+}
+]
