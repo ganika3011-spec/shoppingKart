@@ -156,7 +156,69 @@ def remove_cart(request, product_id,cart_item_id):
             cart_item.delete()
     except:
         pass
-    return redirect('cart')     
+    return redirect('cart')
+
+from django.http import JsonResponse
+
+def update_cart_ajax(request):
+    """Update cart quantities via AJAX."""
+    if request.method != 'POST':
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+    
+    product_id = request.POST.get('product_id')
+    cart_item_id = request.POST.get('cart_item_id')
+    action = request.POST.get('action') # 'add' or 'remove'
+    
+    try:
+        if request.user.is_authenticated:
+            cart_item = CartItem.objects.get(id=cart_item_id, user=request.user)
+        else:
+            cart = Cart.objects.get(cart_id=_cart_id(request))
+            cart_item = CartItem.objects.get(id=cart_item_id, cart=cart)
+            
+        if action == 'add':
+            # Check stock
+            if cart_item.product.stock > cart_item.quantity:
+                cart_item.quantity += 1
+                cart_item.save()
+            else:
+                return JsonResponse({'status': 'error', 'message': 'Out of stock'}, status=400)
+        elif action == 'remove':
+            if cart_item.quantity > 1:
+                cart_item.quantity -= 1
+                cart_item.save()
+            else:
+                cart_item.delete()
+                return JsonResponse({'status': 'removed'})
+                
+        # Recalculate totals
+        total = 0
+        quantity = 0
+        if request.user.is_authenticated:
+            cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+        else:
+            cart = Cart.objects.get(cart_id=_cart_id(request))
+            cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+            
+        for item in cart_items:
+            total += (item.product.price * item.quantity)
+            quantity += item.quantity
+            
+        tax = (2 * total) / 100
+        grand_total = total + tax
+        
+        return JsonResponse({
+            'status': 'success',
+            'quantity': cart_item.quantity if action != 'remove' or cart_item.pk else 0,
+            'sub_total': f"{cart_item.sub_total():.2f}",
+            'total': f"{total:.2f}",
+            'tax': f"{tax:.2f}",
+            'grand_total': f"{grand_total:.2f}",
+            'cart_count': quantity,
+        })
+        
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
 
 def remove_cart_item(request, product_id,cart_item_id):
     

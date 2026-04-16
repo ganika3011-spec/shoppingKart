@@ -134,7 +134,7 @@
             </label>
             <select name="color" id="color" class="form-control form-control-lg" required>
               <option value="" disabled selected>Select a color</option>
-              {% for i in single_product.variations.colors %}
+              {% for i in colors %}
                 <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
               {% endfor %}
             </select>
@@ -147,7 +147,7 @@
             </label>
             <select name="size" id="size" class="form-control form-control-lg" required>
               <option value="" disabled selected>Select a size</option>
-              {% for i in single_product.variations.sizes %}
+              {% for i in sizes %}
                 <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
               {% endfor %}
             </select>

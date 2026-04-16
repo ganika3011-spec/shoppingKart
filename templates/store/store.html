@@ -106,14 +106,27 @@
           </div>
           <div class="d-flex align-items-center bg-white rounded-pill px-3 py-1 shadow-sm border">
             <label class="mb-0 mr-2 small font-weight-bold text-muted">Sort by:</label>
-            <select class="form-control form-control-sm border-0 bg-transparent font-weight-600" style="width: auto; cursor: pointer;">
-              <option selected>Newest Items</option>
-              <option>Price: Low to High</option>
-              <option>Price: High to Low</option>
-              <option>Highest Rated</option>
+            <select class="form-control form-control-sm border-0 bg-transparent font-weight-600" style="width: auto; cursor: pointer;" onchange="window.location.href = updateQueryStringParameter(window.location.href, 'sort', this.value)">
+              <option value="newest" {% if sort == 'newest' %}selected{% endif %}>Newest Items</option>
+              <option value="price_low_high" {% if sort == 'price_low_high' %}selected{% endif %}>Price: Low to High</option>
+              <option value="price_high_low" {% if sort == 'price_high_low' %}selected{% endif %}>Price: High to Low</option>
+              <option value="rating" {% if sort == 'rating' %}selected{% endif %}>Highest Rated</option>
             </select>
           </div>
         </div>
+
+        <script>
+        function updateQueryStringParameter(uri, key, value) {
+            var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+            var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+            if (uri.match(re)) {
+                return uri.replace(re, '$1' + key + "=" + value + '$2');
+            }
+            else {
+                return uri + separator + key + "=" + value;
+            }
+        }
+        </script>
 
         <!-- Products Grid -->
         {% if products %}

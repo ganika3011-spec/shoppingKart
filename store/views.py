@@ -5,7 +5,7 @@ Store views for product listing, details, search, and reviews.
 import logging
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q, Prefetch
+from django.db.models import Q, Prefetch, Avg
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
@@ -37,6 +37,8 @@ def store(request, category_slug=None):
         Rendered store template with paginated products
     """
     try:
+        sort = request.GET.get('sort', 'newest')
+        
         if category_slug:
             category = get_object_or_404(Category, slug=category_slug)
             products = Product.objects.filter(
@@ -46,7 +48,17 @@ def store(request, category_slug=None):
         else:
             products = Product.objects.filter(
                 is_available=True
-            ).select_related('category').order_by('-created_date')
+            ).select_related('category')
+
+        # Apply Sorting
+        if sort == 'price_low_high':
+            products = products.order_by('price')
+        elif sort == 'price_high_low':
+            products = products.order_by('-price')
+        elif sort == 'rating':
+            products = products.annotate(avg_rating=Avg('reviews__rating', filter=Q(reviews__status=True))).order_by('-avg_rating')
+        else:
+            products = products.order_by('-created_date')
 
         # Pagination
         paginator = Paginator(products, ITEMS_PER_PAGE)
@@ -62,6 +74,7 @@ def store(request, category_slug=None):
             'products': paged_products,
             'product_count': products.count(),
             'category': category_slug,
+            'sort': sort,
         }
         return render(request, 'store/store.html', context)
         
@@ -129,6 +142,8 @@ def product_detail(request, category_slug, product_slug):
             'average_rating': product.average_review,
             'review_count': product.review_count,
             'review_summary': review_summary,
+            'colors': product.variations.colors(),
+            'sizes': product.variations.sizes(),
         }
         
         return render(request, 'store/product_detail.html', context)
@@ -165,13 +180,24 @@ def search(request):
             if len(keyword) < 2:
                 messages.warning(request, "Search term must be at least 2 characters long.")
             else:
+                sort = request.GET.get('sort', 'newest')
                 # Use Q objects for OR queries
                 products = Product.objects.filter(
                     Q(product_name__icontains=keyword) |
                     Q(description__icontains=keyword) |
                     Q(category__category_name__icontains=keyword),
                     is_available=True
-                ).select_related('category').order_by('-created_date')
+                ).select_related('category')
+
+                # Apply Sorting
+                if sort == 'price_low_high':
+                    products = products.order_by('price')
+                elif sort == 'price_high_low':
+                    products = products.order_by('-price')
+                elif sort == 'rating':
+                    products = products.annotate(avg_rating=Avg('reviews__rating', filter=Q(reviews__status=True))).order_by('-avg_rating')
+                else:
+                    products = products.order_by('-created_date')
                 
                 product_count = products.count()
                 logger.info(f"Search performed: '{keyword}' - {product_count} results")
