@@ -33,30 +33,55 @@ def register(request):
             email = form.cleaned_data['email']
             phone_number = form.cleaned_data['phone_number']
             password = form.cleaned_data['password']
-            username= email.split('@')[0]
-
-            user= Account.objects.create_user(first_name=first_name, last_name=last_name, email=email,username=username, password=password)
-            user.phone_number= phone_number
-            user.save()
-            #  user Activation
-            current_site = get_current_site(request)
-            mail_subject = 'Please activate your account'
-            message = render_to_string('accounts/account_verification_email.html', {
-                'user': user,
-                'domain': current_site,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': default_token_generator.make_token(user),
-            })
-            to_email = email
             try:
-                send_email = EmailMessage(mail_subject, message, to=[to_email])
-                send_email.send()
-                messages.success(request, 'Thank you for registering! Please check your email for the activation link.')
+                # Check if user already exists
+                if Account.objects.filter(email=email).exists():
+                    messages.error(request, 'Email address already registered')
+                    return redirect('register')
+
+                # Generate unique username
+                username = email.split('@')[0]
+                if Account.objects.filter(username=username).exists():
+                    import uuid
+                    username = f"{username}_{str(uuid.uuid4())[:4]}"
+                
+                user = Account.objects.create_user(
+                    first_name=first_name,
+                    last_name=last_name,
+                    email=email,
+                    username=username,
+                    password=password
+                )
+                user.phone_number = phone_number
+                user.save()
+                logger.info(f"New user registered: {email}")
+
+                # User Activation Email
+                current_site = get_current_site(request)
+                mail_subject = 'Please activate your account'
+                message = render_to_string('accounts/account_verification_email.html', {
+                    'user': user,
+                    'domain': current_site,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': default_token_generator.make_token(user),
+                })
+                
+                try:
+                    send_email = EmailMessage(mail_subject, message, to=[email])
+                    send_email.send()
+                    messages.success(request, 'Thank you for registering! Please check your email for the activation link.')
+                    logger.info(f"Activation email sent to {email}")
+                except Exception as e:
+                    logger.error(f"Email delivery failed for {email}: {e}")
+                    # Note: In console backend, this might still work but log an error if misconfigured
+                    messages.warning(request, "Registration successful, but we couldn't send the activation email. Our team will contact you.")
+
+                return redirect('/accounts/login/?command=verification&email='+email)
+
             except Exception as e:
-                logger.error(f"Email delivery failed: {e}")
-                messages.warning(request, "Registration successful, but we couldn't send the activation email. Please contact support.")
-            
-            return redirect('/accounts/login/?command=verification&email='+email)
+                logger.error(f"Registration error for {email}: {e}", exc_info=True)
+                messages.error(request, "An unexpected error occurred during registration. Please try again.")
+                return redirect('register')
 
     else:
         form= RegistrationForm()
