@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from .models import Product, Variation, ReviewRating, ProductGallery, Wishlist
 import admin_thumbnails
+from Kart.ai_utils import generate_product_description
 
 
 @admin_thumbnails.thumbnail('image')
@@ -95,7 +96,23 @@ class ProductAdmin(admin.ModelAdmin):
         return f"{obj.review_count} reviews"
     review_count_display.short_description = 'Review Count'
     
-    actions = ['mark_as_available', 'mark_as_unavailable']
+    actions = ['mark_as_available', 'mark_as_unavailable', 'generate_ai_description']
+
+    def generate_ai_description(self, request, queryset):
+        """Bulk action to generate AI descriptions for products."""
+        success_count = 0
+        for product in queryset:
+            description = generate_product_description(product.product_name, product.category.category_name)
+            if "AI features are currently disabled" not in description and "Sorry, I encountered an error" not in description:
+                product.description = description
+                product.save()
+                success_count += 1
+        
+        if success_count > 0:
+            self.message_user(request, f"Successfully generated AI descriptions for {success_count} products.")
+        else:
+            self.message_user(request, "Failed to generate AI descriptions. Please check your API key and network connection.", level='error')
+    generate_ai_description.short_description = "Generate AI descriptions"
     
     def mark_as_available(self, request, queryset):
         """Bulk action to mark products as available."""

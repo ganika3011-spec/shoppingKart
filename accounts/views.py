@@ -1,5 +1,7 @@
-from email.message import EmailMessage
-from pyexpat.errors import messages
+# from email.message import EmailMessage (Removed redundant import)
+# from pyexpat.errors import messages (Removed incorrect import)
+import logging
+logger = logging.getLogger(__name__)
 from django.shortcuts import redirect, render,get_object_or_404
 
 from accounts.forms import RegistrationForm,LoginForm,UserForm,UserProfileForm
@@ -46,9 +48,14 @@ def register(request):
                 'token': default_token_generator.make_token(user),
             })
             to_email = email
-            send_email = EmailMessage(mail_subject, message, to=[to_email])
-            send_email.send()
-            #messages.success(request, 'Thank you for registering with us. Please check your email for the activation link.')
+            try:
+                send_email = EmailMessage(mail_subject, message, to=[to_email])
+                send_email.send()
+                messages.success(request, 'Thank you for registering! Please check your email for the activation link.')
+            except Exception as e:
+                logger.error(f"Email delivery failed: {e}")
+                messages.warning(request, "Registration successful, but we couldn't send the activation email. Please contact support.")
+            
             return redirect('/accounts/login/?command=verification&email='+email)
 
     else:

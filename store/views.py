@@ -10,6 +10,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.conf import settings
+from django.core.cache import cache
+from Kart.ai_utils import get_review_summary
 
 from category.models import Category
 from .models import Product, ReviewRating
@@ -109,6 +111,15 @@ def product_detail(request, category_slug, product_slug):
         # Get approved reviews with prefetch optimization
         reviews = product.reviews.filter(status=True).select_related('user')
 
+        # Get AI review summary (cached for 6 hours)
+        cache_key = f'product_review_summary_{product.id}'
+        review_summary = cache.get(cache_key)
+        
+        if not review_summary and reviews.count() >= 2:
+            review_summary = get_review_summary(product.product_name, reviews)
+            if "AI features are currently disabled" not in review_summary and "Sorry, I encountered" not in review_summary:
+                cache.set(cache_key, review_summary, 3600 * 6)
+        
         context = {
             'single_product': product,
             'product': product,
@@ -117,6 +128,7 @@ def product_detail(request, category_slug, product_slug):
             'reviews': reviews,
             'average_rating': product.average_review,
             'review_count': product.review_count,
+            'review_summary': review_summary,
         }
         
         return render(request, 'store/product_detail.html', context)
