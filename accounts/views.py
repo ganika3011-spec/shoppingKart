@@ -53,6 +53,7 @@ def register(request):
                     password=password
                 )
                 user.phone_number = phone_number
+                user.is_active = True  # Auto-activate user
                 user.save()
                 logger.info(f"New user registered: {email}")
 
@@ -69,14 +70,13 @@ def register(request):
                 try:
                     send_email = EmailMessage(mail_subject, message, to=[email])
                     send_email.send()
-                    messages.success(request, 'Thank you for registering! Please check your email for the activation link.')
+                    messages.success(request, 'Registration successful! You can now login.')
                     logger.info(f"Activation email sent to {email}")
                 except Exception as e:
                     logger.error(f"Email delivery failed for {email}: {e}")
-                    # Note: In console backend, this might still work but log an error if misconfigured
-                    messages.warning(request, "Registration successful, but we couldn't send the activation email. Our team will contact you.")
+                    messages.success(request, "Registration successful! You can now login.")
 
-                return redirect('/accounts/login/?command=verification&email='+email)
+                return redirect('/accounts/login/')
 
             except Exception as e:
                 logger.error(f"Registration error for {email}: {e}", exc_info=True)
