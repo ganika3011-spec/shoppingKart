@@ -1,0 +1,939 @@
+[
+{
+  "model": "store.product",
+  "pk": 1,
+  "fields": {
+    "product_name": "Blue shirt",
+    "slug": "blue-shirt",
+    "description": "very classy",
+    "price": "400.00",
+    "image": "photos/products/Blue-Shirt.jpg",
+    "stock": 4,
+    "is_available": true,
+    "category": 1,
+    "created_date": "2026-01-28T12:11:53.778Z",
+    "modified_date": "2026-01-29T08:41:00.782Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 2,
+  "fields": {
+    "product_name": "Tshirt",
+    "slug": "tshirt",
+    "description": "cool",
+    "price": "200.00",
+    "image": "photos/products/Great-Tshirt.jpg",
+    "stock": 1,
+    "is_available": true,
+    "category": 2,
+    "created_date": "2026-01-28T12:12:36.883Z",
+    "modified_date": "2026-01-28T12:12:36.883Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 3,
+  "fields": {
+    "product_name": "Wrangler-shirt",
+    "slug": "wrangler-shirt",
+    "description": "Wrangler shirts are rugged, western-inspired apparel known for durability, functionality, and classic style, originating from a heritage of catering to cowboys and rodeo riders. Key features include sturdy fabrics (denim, cotton, twill), snap-front closures, western yokes, and double-pocket designs that offer both comfort and utility.",
+    "price": "250.00",
+    "image": "photos/products/Wrangler-Shirt.jpg",
+    "stock": 2,
+    "is_available": true,
+    "category": 1,
+    "created_date": "2026-01-28T12:15:52.474Z",
+    "modified_date": "2026-01-28T12:15:52.474Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 4,
+  "fields": {
+    "product_name": "US Polo Assn_Jacket",
+    "slug": "us-polo-assn_jacket",
+    "description": "U.S. Polo Assn. jackets are known for their blend of classic American styling and modern trends, offering a range of options from casual denim to insulated puffer jackets. They are designed to provide both style and comfort for various occasions and weather conditions",
+    "price": "1500.00",
+    "image": "photos/products/US-Polo-Assn_Jacket.jpg",
+    "stock": 5,
+    "is_available": true,
+    "category": 4,
+    "created_date": "2026-01-28T12:17:22.300Z",
+    "modified_date": "2026-01-28T12:17:22.300Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 5,
+  "fields": {
+    "product_name": "Puma Ferrari shoes",
+    "slug": "puma-ferrari-shoes",
+    "description": "Puma offers a wide range of official Scuderia Ferrari shoes, blending motorsport heritage with casual, street-ready style. These collaborations feature iconic team colors, brand logos, and designs inspired by racing technology, available in popular styles like the Drift Cat, Speedcat, and Palermo.",
+    "price": "700.00",
+    "image": "photos/products/Puma-Ferrari-Shoes.jpg",
+    "stock": 3,
+    "is_available": true,
+    "category": 3,
+    "created_date": "2026-01-28T12:18:35.855Z",
+    "modified_date": "2026-01-28T12:18:35.855Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 6,
+  "fields": {
+    "product_name": "Mavi jeans",
+    "slug": "mavi-jeans",
+    "description": "Mavi offers a wide range of denim jeans for both men and women, known for their focus on comfortable fits and quality fabrics, including sustainable blends. You can find various styles from classic straight-leg to modern skinny and relaxed fits in a variety of washes.",
+    "price": "600.00",
+    "image": "photos/products/Mavi_jeans.jpg",
+    "stock": 7,
+    "is_available": true,
+    "category": 5,
+    "created_date": "2026-01-28T12:19:39.580Z",
+    "modified_date": "2026-02-03T07:10:35.935Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 7,
+  "fields": {
+    "product_name": "Jordan shoes",
+    "slug": "jordan-shoes",
+    "description": "Jordan shoes are an iconic line of basketball and sportswear sneakers produced by Nike, Inc. under the Jordan Brand. They are known for their blend of innovative technology, high-quality materials, and significant cultural impact that extends beyond sports into fashion and hip-hop culture.",
+    "price": "1500.00",
+    "image": "photos/products/jordan-true-flight-basketball-shoes.jpg",
+    "stock": 9,
+    "is_available": true,
+    "category": 3,
+    "created_date": "2026-01-30T05:52:27.433Z",
+    "modified_date": "2026-02-03T07:10:35.922Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 8,
+  "fields": {
+    "product_name": "jeans",
+    "slug": "jeans",
+    "description": "uydgjkew",
+    "price": "300.00",
+    "image": "photos/products/image1.jpg",
+    "stock": 2,
+    "is_available": true,
+    "category": 5,
+    "created_date": "2026-02-17T09:47:14.125Z",
+    "modified_date": "2026-02-17T09:47:14.125Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 9,
+  "fields": {
+    "product_name": "Casual White Shirt",
+    "slug": "casual-white-shirt",
+    "description": "A premium casual white cotton shirt.",
+    "price": "450.00",
+    "image": "photos/products/casual_white_shirt.png",
+    "stock": 10,
+    "is_available": true,
+    "category": 1,
+    "created_date": "2026-04-09T05:34:25.890Z",
+    "modified_date": "2026-04-09T05:34:25.890Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 10,
+  "fields": {
+    "product_name": "Neon Active Running Shoes",
+    "slug": "neon-active-running-shoes",
+    "description": "Sleek and vibrant running shoes for high performance.",
+    "price": "1200.00",
+    "image": "photos/products/running_shoes.png",
+    "stock": 15,
+    "is_available": true,
+    "category": 3,
+    "created_date": "2026-04-09T05:34:25.896Z",
+    "modified_date": "2026-04-09T05:34:25.896Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 11,
+  "fields": {
+    "product_name": "Vintage Denim Jacket",
+    "slug": "vintage-denim-jacket",
+    "description": "Classic vintage blue denim jacket.",
+    "price": "850.00",
+    "image": "photos/products/denim_jacket.png",
+    "stock": 8,
+    "is_available": true,
+    "category": 4,
+    "created_date": "2026-04-09T05:34:25.902Z",
+    "modified_date": "2026-04-09T05:34:25.902Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 12,
+  "fields": {
+    "product_name": "Premium Leather Jacket",
+    "slug": "premium-leather-jacket",
+    "description": "A high-quality black leather jacket with a modern fit, perfect for all occasions.",
+    "price": "299.99",
+    "image": "photos/products/jacket.png",
+    "stock": 100,
+    "is_available": true,
+    "category": 4,
+    "created_date": "2026-04-16T09:26:17.666Z",
+    "modified_date": "2026-04-16T09:26:17.666Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 13,
+  "fields": {
+    "product_name": "Ultra Comfortable Sneakers",
+    "slug": "ultra-comfortable-sneakers",
+    "description": "Sleek and comfortable sneakers designed for everyday wear.",
+    "price": "120.00",
+    "image": "photos/products/sneakers.png",
+    "stock": 100,
+    "is_available": true,
+    "category": 3,
+    "created_date": "2026-04-16T09:26:17.715Z",
+    "modified_date": "2026-04-16T09:26:17.715Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 14,
+  "fields": {
+    "product_name": "Vintage Graphic T-Shirt",
+    "slug": "vintage-graphic-t-shirt",
+    "description": "Soft cotton t-shirt with a vintage graphic design, durable and stylish.",
+    "price": "45.00",
+    "image": "photos/products/t_shirt.png",
+    "stock": 100,
+    "is_available": true,
+    "category": 2,
+    "created_date": "2026-04-16T09:26:17.752Z",
+    "modified_date": "2026-04-16T09:26:17.752Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 15,
+  "fields": {
+    "product_name": "AuraX Noise Cancelling Headphones",
+    "slug": "aurax-headphones",
+    "description": "Experience pure sound with AuraX. Advanced active noise cancellation and 40-hour battery life.",
+    "price": "299.00",
+    "image": "photos/products/headphones.png",
+    "stock": 50,
+    "is_available": true,
+    "category": 6,
+    "created_date": "2026-04-16T09:48:15.586Z",
+    "modified_date": "2026-04-16T09:48:15.586Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 16,
+  "fields": {
+    "product_name": "Zenith Pro Smart Fitness Watch",
+    "slug": "zenith-pro-watch",
+    "description": "Your health at a glance. Track heart rate, sleep, and workouts with the Zenith Pro.",
+    "price": "199.00",
+    "image": "photos/products/smartwatch.png",
+    "stock": 100,
+    "is_available": true,
+    "category": 6,
+    "created_date": "2026-04-16T09:48:15.605Z",
+    "modified_date": "2026-04-16T09:48:15.605Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 17,
+  "fields": {
+    "product_name": "Terra Minimalist Canvas Backpack",
+    "slug": "terra-backpack",
+    "description": "Durable, stylish, and sustainable. The Terra backpack is perfect for urban explorers.",
+    "price": "79.00",
+    "image": "photos/products/backpack.png",
+    "stock": 30,
+    "is_available": true,
+    "category": 7,
+    "created_date": "2026-04-16T09:48:15.634Z",
+    "modified_date": "2026-04-16T09:48:15.634Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 18,
+  "fields": {
+    "product_name": "CloudSoft Organic Hoodie",
+    "slug": "cloudsoft-hoodie",
+    "description": "The softest hoodie you will ever own. Made from 100% certified organic cotton.",
+    "price": "89.00",
+    "image": "photos/products/hoodie.png",
+    "stock": 75,
+    "is_available": true,
+    "category": 9,
+    "created_date": "2026-04-16T09:48:15.668Z",
+    "modified_date": "2026-04-16T09:48:15.668Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 19,
+  "fields": {
+    "product_name": "SwiftRun Performance Shorts",
+    "slug": "swiftrun-shorts",
+    "description": "Lightweight and breathable. SwiftRun shorts are designed for high-intensity training.",
+    "price": "45.00",
+    "image": "photos/products/shorts.png",
+    "stock": 150,
+    "is_available": true,
+    "category": 8,
+    "created_date": "2026-04-16T09:48:15.714Z",
+    "modified_date": "2026-04-16T09:48:15.714Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "variation_category": "size",
+    "variation_value": "medium",
+    "is_active": true,
+    "created_date": "2026-01-30T06:28:37.444Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 2,
+  "fields": {
+    "product": 3,
+    "variation_category": "color",
+    "variation_value": "Red",
+    "is_active": true,
+    "created_date": "2026-01-30T06:38:45.132Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 3,
+  "fields": {
+    "product": 5,
+    "variation_category": "size",
+    "variation_value": "Large",
+    "is_active": true,
+    "created_date": "2026-01-30T06:53:34.898Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 4,
+  "fields": {
+    "product": 7,
+    "variation_category": "size",
+    "variation_value": "extra large",
+    "is_active": true,
+    "created_date": "2026-01-30T06:53:52.483Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 5,
+  "fields": {
+    "product": 4,
+    "variation_category": "color",
+    "variation_value": "Brown",
+    "is_active": true,
+    "created_date": "2026-01-30T06:54:21.374Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 6,
+  "fields": {
+    "product": 4,
+    "variation_category": "size",
+    "variation_value": "small",
+    "is_active": true,
+    "created_date": "2026-01-30T07:06:00.194Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 7,
+  "fields": {
+    "product": 12,
+    "variation_category": "color",
+    "variation_value": "Black",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.680Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 8,
+  "fields": {
+    "product": 12,
+    "variation_category": "color",
+    "variation_value": "Brown",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.690Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 9,
+  "fields": {
+    "product": 12,
+    "variation_category": "size",
+    "variation_value": "M",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.697Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 10,
+  "fields": {
+    "product": 12,
+    "variation_category": "size",
+    "variation_value": "L",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.703Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 11,
+  "fields": {
+    "product": 12,
+    "variation_category": "size",
+    "variation_value": "XL",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.709Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 12,
+  "fields": {
+    "product": 13,
+    "variation_category": "color",
+    "variation_value": "White",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.721Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 13,
+  "fields": {
+    "product": 13,
+    "variation_category": "color",
+    "variation_value": "Blue",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.726Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 14,
+  "fields": {
+    "product": 13,
+    "variation_category": "size",
+    "variation_value": "8",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.731Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 15,
+  "fields": {
+    "product": 13,
+    "variation_category": "size",
+    "variation_value": "9",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.736Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 16,
+  "fields": {
+    "product": 13,
+    "variation_category": "size",
+    "variation_value": "10",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.742Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 17,
+  "fields": {
+    "product": 13,
+    "variation_category": "size",
+    "variation_value": "11",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.747Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 18,
+  "fields": {
+    "product": 14,
+    "variation_category": "color",
+    "variation_value": "Navy",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.757Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 19,
+  "fields": {
+    "product": 14,
+    "variation_category": "color",
+    "variation_value": "Red",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.763Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 20,
+  "fields": {
+    "product": 14,
+    "variation_category": "color",
+    "variation_value": "Grey",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.768Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 21,
+  "fields": {
+    "product": 14,
+    "variation_category": "size",
+    "variation_value": "S",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.773Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 22,
+  "fields": {
+    "product": 14,
+    "variation_category": "size",
+    "variation_value": "M",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.779Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 23,
+  "fields": {
+    "product": 14,
+    "variation_category": "size",
+    "variation_value": "L",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.784Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 24,
+  "fields": {
+    "product": 14,
+    "variation_category": "size",
+    "variation_value": "XL",
+    "is_active": true,
+    "created_date": "2026-04-16T09:26:17.789Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 25,
+  "fields": {
+    "product": 15,
+    "variation_category": "color",
+    "variation_value": "Black",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.593Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 26,
+  "fields": {
+    "product": 15,
+    "variation_category": "color",
+    "variation_value": "Silver",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.600Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 27,
+  "fields": {
+    "product": 16,
+    "variation_category": "color",
+    "variation_value": "Space Gray",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.612Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 28,
+  "fields": {
+    "product": 16,
+    "variation_category": "color",
+    "variation_value": "Rose Gold",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.617Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 29,
+  "fields": {
+    "product": 16,
+    "variation_category": "size",
+    "variation_value": "40mm",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.623Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 30,
+  "fields": {
+    "product": 16,
+    "variation_category": "size",
+    "variation_value": "44mm",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.628Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 31,
+  "fields": {
+    "product": 17,
+    "variation_category": "color",
+    "variation_value": "Olive",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.640Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 32,
+  "fields": {
+    "product": 17,
+    "variation_category": "color",
+    "variation_value": "Sand",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.645Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 33,
+  "fields": {
+    "product": 17,
+    "variation_category": "color",
+    "variation_value": "Navy",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.651Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 34,
+  "fields": {
+    "product": 17,
+    "variation_category": "size",
+    "variation_value": "Small",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.656Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 35,
+  "fields": {
+    "product": 17,
+    "variation_category": "size",
+    "variation_value": "Large",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.662Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 36,
+  "fields": {
+    "product": 18,
+    "variation_category": "color",
+    "variation_value": "Cream",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.674Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 37,
+  "fields": {
+    "product": 18,
+    "variation_category": "color",
+    "variation_value": "Charcoal",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.679Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 38,
+  "fields": {
+    "product": 18,
+    "variation_category": "color",
+    "variation_value": "Baby Blue",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.685Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 39,
+  "fields": {
+    "product": 18,
+    "variation_category": "size",
+    "variation_value": "S",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.691Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 40,
+  "fields": {
+    "product": 18,
+    "variation_category": "size",
+    "variation_value": "M",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.696Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 41,
+  "fields": {
+    "product": 18,
+    "variation_category": "size",
+    "variation_value": "L",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.702Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 42,
+  "fields": {
+    "product": 18,
+    "variation_category": "size",
+    "variation_value": "XL",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.708Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 43,
+  "fields": {
+    "product": 19,
+    "variation_category": "color",
+    "variation_value": "Black",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.722Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 44,
+  "fields": {
+    "product": 19,
+    "variation_category": "color",
+    "variation_value": "Neon",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.727Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 45,
+  "fields": {
+    "product": 19,
+    "variation_category": "size",
+    "variation_value": "S",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.733Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 46,
+  "fields": {
+    "product": 19,
+    "variation_category": "size",
+    "variation_value": "M",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.739Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 47,
+  "fields": {
+    "product": 19,
+    "variation_category": "size",
+    "variation_value": "L",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.744Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 48,
+  "fields": {
+    "product": 19,
+    "variation_category": "size",
+    "variation_value": "XL",
+    "is_active": true,
+    "created_date": "2026-04-16T09:48:15.751Z"
+  }
+},
+{
+  "model": "store.reviewrating",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "user": 22,
+    "subject": "Good quality",
+    "review": "The fabric is very nice and fits well.",
+    "rating": 5.0,
+    "ip": null,
+    "status": true,
+    "created_at": "2026-04-16T09:12:54.347Z",
+    "updated_at": "2026-04-16T09:12:54.347Z"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 1,
+  "fields": {
+    "category_name": "shirts",
+    "slug": "shirts",
+    "description": "very classy",
+    "image": "photos/categories/shirts.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 2,
+  "fields": {
+    "category_name": "t shirts",
+    "slug": "t-shirts",
+    "description": "very cool",
+    "image": "photos/categories/tshirts.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 3,
+  "fields": {
+    "category_name": "shoes",
+    "slug": "shoes",
+    "description": "looks different",
+    "image": "photos/categories/shoes.png"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 4,
+  "fields": {
+    "category_name": "Jackets",
+    "slug": "jackets",
+    "description": "looks stunning",
+    "image": "photos/categories/jackets.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 5,
+  "fields": {
+    "category_name": "Jeans",
+    "slug": "jeans",
+    "description": "fully Denim",
+    "image": "photos/categories/jeans.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 6,
+  "fields": {
+    "category_name": "Gadgets",
+    "slug": "gadgets",
+    "description": "Latest premium electronics and gadgets.",
+    "image": ""
+  }
+},
+{
+  "model": "category.category",
+  "pk": 7,
+  "fields": {
+    "category_name": "Accessories",
+    "slug": "accessories",
+    "description": "Fashionable accessories for your daily life.",
+    "image": ""
+  }
+},
+{
+  "model": "category.category",
+  "pk": 8,
+  "fields": {
+    "category_name": "Fitness",
+    "slug": "fitness",
+    "description": "Gear to keep you active and healthy.",
+    "image": ""
+  }
+},
+{
+  "model": "category.category",
+  "pk": 9,
+  "fields": {
+    "category_name": "Clothing",
+    "slug": "clothing",
+    "description": "Stylish and comfortable apparel for every occasion.",
+    "image": ""
+  }
+}
+]
